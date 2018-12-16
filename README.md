@@ -36,7 +36,7 @@ Open it in the [Expo app](https://expo.io) on your phone to view it. It will rel
 
 Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
 
-### `npm run-script watch-test'
+### `npm run-script watch-test`
 
 Runs jest in --watch mode. 
 
