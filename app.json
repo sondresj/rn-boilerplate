@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "YOUR_APP_NAME",
+    "description": "YOUR_APP_DESCRIPTION",
+    "slug": "YOUR_APP_NAME_AND_SOME_OPTIONAL_STUFF",
+    "scheme": "YOUR_APP_SCHEME(INTENT)",
+    "privacy": "unlisted",
+    "sdkVersion": "31.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0",
+    "orientation": "portrait",
+    "primaryColor": "#106A9E",
+    "icon": "./assets/img/icon.png",
+    "splash": {
+      "image": "./assets/img/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#106A9E"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 60000
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "NAME.PACKAGE.YOUR",
+      "buildNumber": "1.0.1",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "appStoreUrl": "YOUR_APP_STORE_URL",
+      "infoPlist": { }
+    },
+    "android": {
+      "package": "NAME.PACKAGE.YOUR",
+      "versionCode": 10000001,
+      "playStoreUrl": "YOUR_PLAY_STORE_URL",
+      "permissions": [
+        "ACCESS_NETWORK_STATE",
+        "INTERNET",
+        "WAKE_LOCK",
+        "com.anddoes.launcher.permission.UPDATE_COUNT",
+        "com.google.android.c2dm.permission.RECEIVE",
+        "com.htc.launcher.permission.READ_SETTINGS",
+        "com.htc.launcher.permission.UPDATE_SHORTCUT",
+        "com.majeur.launcher.permission.UPDATE_BADGE",
+        "com.sec.android.provider.badge.permission.READ",
+        "com.sec.android.provider.badge.permission.WRITE",
+        "com.sonyericsson.home.permission.BROADCAST_BADGE"
+      ]
+    }
+  }
+}
