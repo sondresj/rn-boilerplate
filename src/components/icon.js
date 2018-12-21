@@ -13,6 +13,7 @@ export default (Platform) => class Icon extends React.PureComponent {
                 }				
                 size={this.props.size || 32}
                 style={this.props.style}
+                color={this.props.color}
             />        
         )
     }

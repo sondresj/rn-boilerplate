@@ -48,9 +48,9 @@ export default class SwipeHandler extends Component {
                     duration: 200
                 }).start(() => this.translateX.setValue(0)),
                 Animated.timing(this.fadeAnim, {
-                      toValue: 1,
-                      duration: 600,}
-                  ).start()
+                    toValue: 1,
+                    duration: 600,
+                }).start()
             ])
         } else {
             Animated.spring(this.translateX, {
