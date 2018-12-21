@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native'
 
-export default (Colors) => StyleSheet.create({
+export default (colors) => StyleSheet.create({
     header: {
-        backgroundColor: '#106A9E',
+        backgroundColor: colors.headerBackground,
     },
     headerText: {
-        fontWeight: 'bold',
         flex: 1,
         fontSize: 20,
         textAlign: 'center',
     },
     text: {
+        color: colors.headerText,
         fontFamily: 'open-sans',
     }
 })

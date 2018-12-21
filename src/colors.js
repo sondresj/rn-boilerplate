@@ -1,5 +1,5 @@
 const tintColor = '#2f95dc'
-
+const headerBackground = '#106A9E'
 export default {
   tintColor,
   iconDefault: '#ccc',
@@ -11,4 +11,6 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
+  headerBackground,
+  headerText: 'white'
 }
