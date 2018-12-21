@@ -1,3 +1,5 @@
+import Container from 'jasc'
+
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import { connect } from 'react-redux'
 import { Platform } from 'react-native'
@@ -17,18 +19,19 @@ import { createNavigator, Navigator } from './navigation'
 
 import { StorageActions, storageReducer } from './actions/storage'
 
-export default container => {
+export default (cachedState) => {
     const isDev = Constants.manifest.packagerOpts && Constants.manifest.packagerOpts.dev
-
+    
     const rootReducer = combineReducers({
         storage: storageReducer,
     })
 
     const logger = () => next => action => {
-        console.log('Dispatching action: ', action.type)
+        console.log('Dispatching action:', action.type)
         return next(action)
     }
-
+    
+    const container = new Container()
     return container
         .serve('DEBUG', () => isDev)
         .serve('appVersion', () => isDev
@@ -37,8 +40,8 @@ export default container => {
                 ? Constants.manifest.ios.buildNumber
                 : Constants.manifest.android.versionCode)
         .serve('store', () => isDev
-            ? createStore(rootReducer, applyMiddleware(logger))
-            : createStore(rootReducer))
+            ? createStore(rootReducer, cachedState, applyMiddleware(logger)) 
+            : createStore(rootReducer, cachedState))
         .serve('run', ioc => {
             const { store } = ioc
             return (type, data = {}) => { store.dispatch({ type, ...data }) }
