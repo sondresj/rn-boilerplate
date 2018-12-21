@@ -1,7 +1,9 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Linking, Font, AppLoading } from 'expo'
+import { Linking, Font, AppLoading, Updates } from 'expo'
 import { AppState, Platform, AsyncStorage } from 'react-native'
+
+import asyncAlert from './src/util/asyncalert'
 
 import Configure from './src/configure'
 
@@ -22,6 +24,7 @@ export default class App extends React.PureComponent {
 	async componentDidMount() {
 		AppState.addEventListener('change', this.handleAppStateChange)
 		Linking.addEventListener('url', this.handleIntent)
+		this._updatesSubscription = Updates.addListener(this.handleUpdate)
 
 		// The property name defined here becomes available for usage as fontFamily (e.g. 'roboto')
 		await Font.loadAsync({
@@ -60,6 +63,7 @@ export default class App extends React.PureComponent {
 	componentWillUnmount() {
 		Linking.removeAllListeners('url')
 		AppState.removeEventListener('change', this.handleAppStateChange)
+		this._updatesSubscription && this._updatesSubscription.remove()
 	}
 
 	componentDidCatch(error, info) {
@@ -79,6 +83,13 @@ export default class App extends React.PureComponent {
 		console.log('NEXT APPSTATE:', nextAppState)
 		if(nextAppState === appStateForCachingRedux) // We are going to inactive or background
 			AsyncStorage.setItem('cachedReduxState', JSON.stringify(this.state.container.store.getState()))
+	}
+
+	handleUpdate = (update) => {
+		if(update.type === Updates.EventType.DOWNLOAD_FINISHED){
+			asyncAlert.okCancelAlertAsync('New version available', 'Start using the new version now?', 'Heck yes!', 'Later...')
+				.then(answer => answer && Updates.reload())
+		}
 	}
 
 	render() {
