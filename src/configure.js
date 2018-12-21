@@ -8,9 +8,8 @@ import { Constants } from 'expo'
 import styles from './styles'
 import colors from './colors'
 
-import TabBarIcon from './components/tabBarIcon'
-import Icon from './components/icon'
-import { MainLayout, MiscLayout } from './components/layout'
+import TabBarIcon from './components/configured/tabBarIcon'
+import { MainLayout, MiscLayout } from './components/configured/layout'
 
 import { EntryScreen, entryScreenMapper } from './screens/entry'
 import { MainScreen, mainScreenMapper } from './screens/main'
@@ -50,10 +49,9 @@ export default (cachedState) => {
         .serve('StorageActions', ioc => new StorageActions(ioc.run))
         .serve('colors', () => colors)
         .serve('styles', ioc => styles(ioc.colors))
-        .serve('Icon', () => Icon(Platform))
         .serve('MainLayout', ioc => MainLayout())
         .serve('MiscLayout', ioc => MiscLayout())
-        .serve('TabBarIcon', ioc => TabBarIcon(ioc.colors, Platform))
+        .serve('TabBarIcon', ioc => TabBarIcon(ioc.colors))
         .serve('EntryScreen', ioc => connect(entryScreenMapper)(EntryScreen(ioc.MiscLayout, ioc.Navigator, ioc.styles)))
         .serve('MainScreen', ioc => connect(mainScreenMapper)(MainScreen(ioc.MainLayout, ioc.Navigator, ioc.styles)))
         .serve('AppNavigator', ioc => createNavigator(ioc.styles, ioc.TabBarIcon, ioc.EntryScreen, ioc.MainScreen))

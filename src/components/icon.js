@@ -1,20 +1,14 @@
 import React from 'react'
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons'
+import { Platform } from 'react-native'
 
 // https://ionicons.com/cheatsheet.html
 
-export default (Platform) => class Icon extends React.PureComponent {
-    render() {
-        return (
-			<Ionicons
-                name={Platform.OS === 'ios'
-                    ? `ios-${this.props.name}`
-                    : `md-${this.props.name}`
-                }				
-                size={this.props.size || 32}
-                style={this.props.style}
-                color={this.props.color}
-            />        
-        )
-    }
-}
+export default (props) =>
+    <Ionicons name={Platform.OS === 'ios'
+            ? `ios-${props.name}`
+            : `md-${props.name}`}
+        size={props.size || 32}
+        style={props.style}
+        color={props.color}
+    />

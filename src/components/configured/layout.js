@@ -42,8 +42,5 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: 'white',
         fontFamily: 'open-sans'
-    },
-    icon: {
-        margin: 20
     }
 })

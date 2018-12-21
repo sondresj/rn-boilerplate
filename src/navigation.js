@@ -24,12 +24,10 @@ export const createNavigator = (styles, TabBarIcon, Entry, Main) => {
                 />)
         }})
 
-    return createAppContainer(createSwitchNavigator(
-        {
+    return createAppContainer(createSwitchNavigator({
             Entry, // Add other screens that are manually navigated to here 
             Main: createBottomTabNavigator({ mainStack /** add other stacks here */ })
-        },
-        { initialRouteName: 'Entry', defaultNavigationOptions }))
+        }, { initialRouteName: 'Entry', defaultNavigationOptions }))
 }
 
 /**
@@ -49,7 +47,7 @@ export class Navigator {
 
     navigate = (routeName, params) => {
         if (!this._navigatorRef) {
-            console.warn('Navigator._navigatorRef is not yet set!')
+            console.warn('topLevelNavigator is not set!')
             return
         }
 
